@@ -65,6 +65,10 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
   content.data: {"problem_statement":<str>}
   ```
   MUST be `<` 100 characters.
+              
+`Kind 1` Replies to this event are comments on the problem_statement. 
+`Kind 10311` are new problems nested under this problem.
+              
 ##### problem_statement_long
   ```
   content.data: {"problem_statement_long":<str>}
