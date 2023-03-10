@@ -5,13 +5,16 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 - VALIDATE: `pubkey` MUST exist in rocketree
 - VALIDATE: tags MUST contain `["e", "503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354", <optional relay URL>, "root"]`
 - VALIDATE: tags MUST contain `["e", <todo>, <optional relay URL>, "reply"]`
+- VALIDATE: `content` MUST be json
+- VALIDATE `content.height` MUST be current Bitcoin height
 
 #### Event `Kind 31031`: project metadata update and witness (parametized replaceable event)   
 - VALIDATE: `e` tag MUST point to a `Kind 1031` event
 - VALIDATE: `pubkey` MUST be same as `Kind 1031` in `e` tag `||` exist in `votepower` array in most recent metadata.
 - VALIDATE: `content` MUST be json
 - VALIDATE `content.sequence` MUST be latest `sequence + 1` 
-- VALIDATE `["d", <parameter>]` exists in 
+- VALIDATE `content.height` MUST `>` `content.height` of event in `e` tag `&&` MUST `=<` current bitcoin height
+- VALIDATE `["d", <parameter>]` exists in definition below
 - VALIDATE `content.data` MUST follow rules defined for the parameter being set.
 
 ##### `content.data` for each `["d", <parameter>]`
