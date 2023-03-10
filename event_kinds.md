@@ -1,14 +1,20 @@
-#### Nostrocket Ignition Event
+### Nostrocket Ignition Event
 Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354` in order to be parsed by the Nostrocket state machine.
 
-#### Event `Kind 1031`: new project creation Event   
+### Event `Kind 1031`
+
+#### New project creation Event.   
+
 - VALIDATE: `pubkey` MUST exist in rocketree
 - VALIDATE: tags MUST contain `["e", "503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354", <optional relay URL>, "root"]`
 - VALIDATE: tags MUST contain `["e", <todo>, <optional relay URL>, "reply"]`
 - VALIDATE: `content` MUST be json
 - VALIDATE `content.height` MUST be current Bitcoin height
 
-#### Event `Kind 31031`: project metadata update and witness (parametized replaceable event)   
+### Event `Kind 31031`
+
+#### Project metadata update and witness (parametized replaceable event)   
+
 - VALIDATE: `e` tag MUST point to a `Kind 1031` event
 - VALIDATE: `pubkey` MUST be same as `Kind 1031` in `e` tag `||` exist in `votepower` array in most recent metadata.
 - VALIDATE: `content` MUST be json
@@ -17,7 +23,8 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 - VALIDATE `["d", <parameter>]` exists in definition below
 - VALIDATE `content.data` MUST follow rules defined for the parameter being set.
 
-##### `content.data` for each `["d", <parameter>]`
+#### Parameters for replaceable events of `Kind 31031`
+
 | Parameter <str> | Description | Causes State Change | Used as Witness |
 | ------------- | ------------- | ------------------- | ----------- |
 | captable      | the current mapping of pubkeys to shares | N | Y |
@@ -31,9 +38,39 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 | git_repo | the git repo that pull requests SHOULD be based on | Y | Y |
 | investment_prohibited | prohibit investment? | Y | Y |
 | investor_whitelist | pubkeys that are allowed to invest | Y | Y |
+  
+#### `content.data` for each `["d", <parameter>]`
 
+##### captable
+  This is the current mapping of pubkeys to number of shares 
+##### votepower
+##### latest_block
+##### project_name
+##### problem_statement
+##### problem_statement_long
+##### possible_solutions
+##### revenue
+##### git_repo
+##### investment_prohibited
+##### investor_whitelist
 
+### Finding the current state
+There are two modes of trust in Nostrocket, each with different levels of confidence that we can attribute to the current state of Nostrocket projects.
 
+#### Votepower based confidence
+This is a level of confidence that is based on calculating votepower by replaying all events. This requires a full Nostrocket state machine which does not run in a browser. This can be thought of as a stateful Nostr indexing service with votepower based consensus. 
+
+Users can either run their own state machine locally, or connect to a public facing one, depending on what they are doing. E.g. if any monetary value is involved they should probably run their own one locally.
+
+This could probably run in the browser at some point using Rust to target the WASM VM, but for now I'm just going to prototype it in golang and it doesn't target WASM very well.
+  
+#### Witness based confidence  
+This is a fallback in cases where the Nostrocket state machine is broken (will probably happen a lot initially).
+We simply trust the project creator for the current state of `votepower` and derive all other state from that. 
+
+  
+  
+  
   
 - current cap table
 - last block height they saw (their client should auto-publish this whenever they see a block > current)
