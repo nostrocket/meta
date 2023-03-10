@@ -26,6 +26,14 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 |  project_name | the name of the project | Y | Y |
 | problem_statement | problem statement TL;DR; | Y | Y |
 | problem_statement_long | full problem statement | Y | Y |
+| possible_solutions | a discussion about possible approaches to solving | Y | Y |
+| revenue | a discussion about possible revenue | Y | Y |
+| git_repo | the git repo that pull requests SHOULD be based on | Y | Y |
+| investment_prohibited | prohibit investment? | Y | Y |
+| investor_whitelist | pubkeys that are allowed to invest | Y | Y |
+
+
+
   
 - current cap table
 - last block height they saw (their client should auto-publish this whenever they see a block > current)
