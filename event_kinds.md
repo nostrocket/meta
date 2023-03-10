@@ -18,6 +18,15 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 - VALIDATE `content.data` MUST follow rules defined for the parameter being set.
 
 ##### `content.data` for each `["d", <parameter>]`
+| Parameter <str> | Description | Causes State Change | Used as Witness |
+| ------------- | ------------- | ------------ |
+| captable      | the current mapping of pubkeys to shares | N | Y |
+| votepower      | the current mapping of pubkeys to votepower | N | Y |
+| latest_block  | the last block we saw | N | Y |
+|  project_name | the name of the project | Y | Y |
+| problem_statement | problem statement TL;DR; | Y | Y |
+| problem_statement_long | full problem statement | Y | Y |
+  
 - current cap table
 - last block height they saw (their client should auto-publish this whenever they see a block > current)
 - Project Name
