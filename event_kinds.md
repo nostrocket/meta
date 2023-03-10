@@ -34,6 +34,7 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 | problem_statement | problem statement TL;DR; | Y | Y |
 | problem_statement_long | full problem statement | Y | Y |
 | possible_solutions | a discussion about possible approaches to solving | Y | Y |
+| mission_statement | mission statement | Y | Y |
 | revenue | a discussion about possible revenue | Y | Y |
 | git_repo | the git repo that pull requests SHOULD be based on | Y | Y |
 | investment_prohibited | prohibit investment? | Y | Y |
@@ -52,11 +53,25 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 ##### votepower
   This is the current mapping of pubkeys to Votepower in the project. Again, this is only the state of votepower according to whoever signed the event, events of this kind do not cause a state change.
 ##### latest_block
-  
+  This is the last block height that the pubkey witnessed. Anyone with votepower SHOULD publish this every block (web client and state machine should auto-publish this whenever it sees a block > current)
 ##### project_name
+  This is the name of the project.
+  ```
+  content.data: {"project_name":<str>}
+  ```
+  MUST be `<` 20 characters.
 ##### problem_statement
+  ```
+  content.data: {"problem_statement":<str>}
+  ```
+  MUST be `<` 100 characters.
 ##### problem_statement_long
+  ```
+  content.data: {"problem_statement_long":<str>}
+  ```
+  This is an elaboration on the problem statement and should go into significant detail. 
 ##### possible_solutions
+##### mission_statement
 ##### revenue
 ##### git_repo
 ##### investment_prohibited
@@ -78,15 +93,7 @@ We simply trust the project creator for the current state of `votepower` and der
 
   
   
-  
-  
-- current cap table
-- last block height they saw (their client should auto-publish this whenever they see a block > current)
-- Project Name
-- Problem Statement TLDR
-- Problem Statement Expanded
-- Possible Solutions
-- Project Description
+### pastes
 - public Git repo for pull requests to be based on
 - Possible revenue model ideas (what will people be paying for)
 - Investment Prohibited? BOOL (can investors buy expense requests? If true, project will only be owned by contributors, and shares cannot be transferred to other pubkeys)
