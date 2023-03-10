@@ -43,6 +43,12 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 
 ##### captable
   This is the current mapping of pubkeys to Shares in the project. The state of Nostrocket is not updated by this kind of event, it's simply a way to say that you have witnessed this state, and people can choose to believe you or not. This is useful for a cursory look at the project from a browser, but to reach a high degree of certainty about the current state of the Cap Table you need to run the full Nostrocket State Machine. 
+  
+  ```
+  tags: {["d", "captable"]}
+  content: {"height":<int>, "data": "{"captable":"[<pubkey_hex>:<int>]", "total":<int>}
+  ```
+  
 ##### votepower
   This is the current mapping of pubkeys to Votepower in the project. Again, this is only the state of votepower according to whoever signed the event, events of this kind do not cause a state change.
 ##### latest_block
