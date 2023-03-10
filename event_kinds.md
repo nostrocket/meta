@@ -1,15 +1,20 @@
-#### Event Kind 1031: new project creation Event   
+#### Nostrocket Ignition Event
+`503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354`
+
+#### Event `Kind 1031`: new project creation Event   
 - VALIDATE: `pubkey` MUST exist in rocketree
+- VALIDATE: tags MUST contain `["e", "503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354", <optional relay URL>, "root"]`
+- VALIDATE: tags MUST contain `["e", <todo>, <optional relay URL>, "reply"]`
 
-
-#### Event Kind 31031: project metadata update and witness (parametized replaceable event)   
+#### Event `Kind 31031`: project metadata update and witness (parametized replaceable event)   
 - VALIDATE: `e` tag MUST point to a `Kind 1031` event
 - VALIDATE: `pubkey` MUST be same as `Kind 1031` in `e` tag `||` exist in `votepower` array in most recent metadata.
 - VALIDATE: `content` MUST be json
 - VALIDATE `content.sequence` MUST be latest `sequence + 1` 
+- VALIDATE `["d", <parameter>]` exists in 
 - VALIDATE `content.data` MUST follow rules defined for the parameter being set.
 
-##### `content.data`
+##### `content.data` for each `["d", <parameter>]`
 - current cap table
 - last block height they saw (their client should auto-publish this whenever they see a block > current)
 - Project Name
