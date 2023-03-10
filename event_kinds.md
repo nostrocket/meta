@@ -1,5 +1,5 @@
 #### Nostrocket Ignition Event
-`503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354`
+Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354` in order to be parsed by the Nostrocket state machine.
 
 #### Event `Kind 1031`: new project creation Event   
 - VALIDATE: `pubkey` MUST exist in rocketree
