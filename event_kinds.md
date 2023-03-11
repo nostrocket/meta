@@ -102,11 +102,14 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
   ```
   content.data: {"investment_prohibited":<bool>}
   ```
-  If set to True, contributors do not get the option of selling their approved expenses to investors, they can only get shares.
+  If set to True, contributors do not get the option of selling their approved expenses to investors, they can only get shares. The project will only be owned by contributors, and shares cannot be transferred to other pubkeys
 ##### investor_whitelist
   ```
-  content.data: {"investment_prohibited":<bool>}
+  content.data: {"investor_whitelist": "[<str pubkey>, ...]"}
   ```
+  If this is NOT empty, then only pubkeys on the list can pay for expenses.
+  Can be useful, for example, if the project creator wants to retain full control.
+  
 ### Finding the current state
 There are two modes of trust in Nostrocket, each with different levels of confidence that we can attribute to the current state of Nostrocket projects.
 
@@ -120,11 +123,3 @@ This could probably run in the browser at some point using Rust to target the WA
 #### Witness based confidence  
 This is a fallback in cases where the Nostrocket state machine is broken (will probably happen a lot initially).
 We simply trust the project creator for the current state of `votepower` and derive all other state from that. 
-
-  
-  
-### pastes
-- public Git repo for pull requests to be based on
-- Possible revenue model ideas (what will people be paying for)
-- Investment Prohibited? BOOL (can investors buy expense requests? If true, project will only be owned by contributors, and shares cannot be transferred to other pubkeys)
-- Allowed Investor pubkeys (unrestricted if empty, project creator can add their own pubkey if they want to be the only one who can invest)
