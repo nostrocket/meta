@@ -74,13 +74,39 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
   content.data: {"problem_statement_long":<str>}
   ```
   This is an elaboration on the problem statement and should go into significant detail. 
+  
 ##### possible_solutions
+  ```
+  content.data: {"possible_solutions":<str>}
+  ```
+  This is a discussion about the possible solutions to the problem.
+  `Kind 1` Replies to this are displayed in a thread.
 ##### mission_statement
+  ```
+  content.data: {"mission_statement":<str>}
+  ```
+ A shared project is really just a group of people. This is the state reason for the group's existence.
 ##### revenue
+  ```
+  content.data: {"revenue":<str>}
+  ```
+  This is a discussion about possible ways this project could create revenue for contributors - what will people be paying for exactly?
+   `Kind 1` Replies to this are displayed in a thread.
 ##### git_repo
+  ```
+  content.data: {"git_repo":<str URL>}
+  ```
+  This is a publicly hosted git repo which can be used to base pull requests.
+   Pull requests are events of `Kind xxxx` in reply to this.
 ##### investment_prohibited
+  ```
+  content.data: {"investment_prohibited":<bool>}
+  ```
+  If set to True, contributors do not get the option of selling their approved expenses to investors, they can only get shares.
 ##### investor_whitelist
-
+  ```
+  content.data: {"investment_prohibited":<bool>}
+  ```
 ### Finding the current state
 There are two modes of trust in Nostrocket, each with different levels of confidence that we can attribute to the current state of Nostrocket projects.
 
