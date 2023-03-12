@@ -13,7 +13,7 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 
 ### Event `Kind 31031`
 
-#### Project metadata update and witness (parametized replaceable event)   
+#### Project metadata update and witness (NIP-33 parametized replaceable event)   
 
 - VALIDATE: `e` tag MUST point to a `Kind 1031` event
 - VALIDATE: `pubkey` MUST be same as `Kind 1031` in `e` tag `||` exist in `votepower` array in most recent metadata.
