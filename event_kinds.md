@@ -7,7 +7,7 @@ Events MUST exist in thread replying to `503941a9939a4337d9aef7b92323c353441cb5e
 
 - VALIDATE: `pubkey` MUST exist in rocketree
 - VALIDATE: tags MUST contain `["e", "503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354", <optional relay URL>, "root"]`
-- VALIDATE: tags MUST contain `["e", <todo>, <optional relay URL>, "reply"]`
+- VALIDATE: tags MUST contain `["e", <todo: new project thread ID>, <optional relay URL>, "reply"]`
 - VALIDATE: `content` MUST be json
 - VALIDATE `content.height` MUST be current Bitcoin height
 
