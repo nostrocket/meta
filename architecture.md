@@ -22,7 +22,7 @@ The event tree is a tree of Nostr Events with `503941a9939a4337d9aef7b92323c3534
         - Investment Whitelist <pubkeys> (SCM)
 
     ## Example Message Flow
-Someone wants to add a new problem to a subrocket problem tracker. They create an event for the new problem:
+Someone wants to add a new problem to a subrocket problem tracker. They create an `kind 10311` event for the new problem:
 - tags
     - `["e", "503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354", <optional relay URL>, "root"]`
     - `["e", <Subrocket creation event ID>, <optional relay URL>, "subrocket"]`
