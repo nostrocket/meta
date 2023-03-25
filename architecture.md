@@ -21,7 +21,7 @@ The event tree is a tree of Nostr Events with `503941a9939a4337d9aef7b92323c3534
         - Investment Prohibited <bool> (SCM)
         - Investment Whitelist <pubkeys> (SCM)
 
-    ## Example Message Flow
+## Example Message Flow
 Someone wants to add a new problem to a subrocket problem tracker. They create an event for the new problem:
 - tags
     - `["e", "503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354", <optional relay URL>, "root"]`
@@ -51,3 +51,27 @@ The Nostrocket Engine MUST
 - Validate that the pubkey holds no other claims on any Nostrocket or Subrocket problem
 - Add a new entry into the Problems `Injector` state
 -  Publish the updated Subrocket state, which clients can then use to update their local state cache.
+
+## Event Flow
+When an account with `votepower > 0` witnesses a new Bitcoin Block, it SHOULD create an Event:
+```
+.Kind: 640001
+.Content: {
+    Height: <int64>[block height]
+    Hash: <string>[block header]
+    Time: <int64>[timestamp]
+    OP_RETURN: <string>[merkle root of nostrocket state]
+    }
+.Tags: {
+    ["e", "503941a9939a4337d9aef7b92323c353441cb5ebe79f13fed77aeac615116354", "root"],
+    ["e", "event branch tip", "reply"], //repeat for every state branch that matters (e.g. not comments)
+}
+```
+
+This event is a vote for every event branch that is tagged, indicating that it does not violate the protocol and was used in the creation of the current state, and delineating the end of a block.
+
+If someone tries to create an event with an earlier timestamp, it won't work because we know that there has been a block since then and no votepower witnessed it.
+
+If two different npubs with votepower witness conflicting events, the one with the lowest votepower should try to reproduce the state of the one with the higher votepower and go with that.
+
+For critical states like shares, npubs with votepower should append a replaceable event to the end of the branch with *every* state change.
